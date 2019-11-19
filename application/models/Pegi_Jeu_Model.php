@@ -18,7 +18,7 @@ class Pegi_Jeu_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Pegi_Jeu" );
+        $this->setTable( "pegi_jeu" );
         $this->setEntity( "Pegi_Jeu_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Pegi_Jeu_Model extends MY_Model {
     */
     
     public function getPegi_Jeu( $id ) {
-        $data = $this->read( array( 'Pegi_Jeu'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

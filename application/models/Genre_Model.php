@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-require_once(ENTITIES_DIR  . "Produit_Entity.php");
+require_once(ENTITIES_DIR  . "Genre_Entity.php");
 
-class Produit_Model extends MY_Model {
+class Genre_Model extends MY_Model {
     
 
     /**
@@ -18,19 +18,19 @@ class Produit_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Produit" );
-        $this->setEntity( "Produit_Entity" );
+        $this->setTable( "genre" );
+        $this->setEntity( "Genre_Entity" );
     }
 
 
     /**
     * Insérer
     *
-    * @param Produit_Entity $obj
+    * @param Genre_Entity $obj
     * @return bool
     */
     
-    public function insertProduit($obj) {
+    public function insertGenre($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->replace($obj);
         }
@@ -41,11 +41,11 @@ class Produit_Model extends MY_Model {
     /**
     * Modifier
     *
-    * @param Produit_Entity $obj
+    * @param Genre_Entity $obj
     * @return bool
     */
     
-    public function updateProduit($obj) {
+    public function updateGenre($obj) {
         if ( isset( $obj->id ) ) {
             return $this->update( array( 'id'=>$obj->id ) , $obj );
         }
@@ -56,11 +56,11 @@ class Produit_Model extends MY_Model {
     /**
     * Supprimer
     *
-    * @param Produit_Entity $obj
+    * @param Genre_Entity $obj
     * @return bool
     */
     
-    public function deleteProduit($obj) {
+    public function deleteGenre($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->delete( array( 'id'=>$obj->id ));
         }
@@ -72,11 +72,11 @@ class Produit_Model extends MY_Model {
     * Retourne une enregistrement à partir de l'id
     *
     * @param int $id
-    * @return Produit_Entity
+    * @return Genre_Entity
     */
     
-    public function getProduit( $id ) {
-        $data = $this->read( array( 'Produit'=> $id ) );
+    public function getGenre( $id ) {
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
@@ -88,10 +88,10 @@ class Produit_Model extends MY_Model {
     /**
     * Retourne la liste des enregistrements
     *
-    * @return Produit_Entity
+    * @return Genre_Entity
     */
     
-    public function getProduitList() {
+    public function getGenreList() {
         $data = $this->read();
         if(empty($data)){
             $error = $this->db->error();

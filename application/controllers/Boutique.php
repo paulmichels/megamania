@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Store extends CI_Controller {
+class Boutique extends CI_Controller {
 
     public function __construct()
     {
@@ -11,7 +11,7 @@ class Store extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('store');
+		$this->load->view('boutique');
 	}
     
 }

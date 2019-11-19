@@ -18,7 +18,7 @@ class Plateforme_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Plateforme" );
+        $this->setTable( "plateforme" );
         $this->setEntity( "Plateforme_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Plateforme_Model extends MY_Model {
     */
     
     public function getPlateforme( $id ) {
-        $data = $this->read( array( 'Plateforme'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

@@ -18,7 +18,7 @@ class Jeu_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Jeu" );
+        $this->setTable( "jeu" );
         $this->setEntity( "Jeu_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Jeu_Model extends MY_Model {
     */
     
     public function getJeu( $id ) {
-        $data = $this->read( array( 'Jeu'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

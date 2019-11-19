@@ -18,7 +18,7 @@ class Produit_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Produit" );
+        $this->setTable( "produit" );
         $this->setEntity( "Produit_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Produit_Model extends MY_Model {
     */
     
     public function getProduit( $id ) {
-        $data = $this->read( array( 'Produit'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

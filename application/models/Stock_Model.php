@@ -18,7 +18,7 @@ class Stock_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Stock" );
+        $this->setTable( "stock" );
         $this->setEntity( "Stock_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Stock_Model extends MY_Model {
     */
     
     public function getStock( $id ) {
-        $data = $this->read( array( 'Stock'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
