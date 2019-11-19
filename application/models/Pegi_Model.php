@@ -18,7 +18,7 @@ class Pegi_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Pegi" );
+        $this->setTable( "pegi" );
         $this->setEntity( "Pegi_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Pegi_Model extends MY_Model {
     */
     
     public function getPegi( $id ) {
-        $data = $this->read( array( 'Pegi'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

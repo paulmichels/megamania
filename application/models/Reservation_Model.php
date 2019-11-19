@@ -18,7 +18,7 @@ class Reservation_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Reservation" );
+        $this->setTable( "reservation" );
         $this->setEntity( "Reservation_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Reservation_Model extends MY_Model {
     */
     
     public function getReservation( $id ) {
-        $data = $this->read( array( 'Reservation'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

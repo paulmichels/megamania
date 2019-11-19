@@ -18,7 +18,7 @@ class Editeur_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Editeur" );
+        $this->setTable( "editeur" );
         $this->setEntity( "Editeur_Entity" );
     }
 
@@ -76,7 +76,7 @@ class Editeur_Model extends MY_Model {
     */
     
     public function getEditeur( $id ) {
-        $data = $this->read( array( 'Editeur'=> $id ) );
+        $data = $this->read( array( 'id'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
