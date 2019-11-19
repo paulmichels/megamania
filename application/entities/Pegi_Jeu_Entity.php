@@ -3,15 +3,13 @@
 require_once(CORE_DIR  . "MY_Entity.php");
 
 /**
-* Classe entitée Product_Entity
+* Classe entitée Pegi_Jeu_Entity
 */
 
-class Product_Entity extends MY_Entity {
+class Pegi_Jeu_Entity extends MY_Entity {
 
-    protected $id;
-    /**
-    * Ajouter les membres
-    */
+    protected $id_pegi;
+    protected $id_jeu;
 
 
     /**

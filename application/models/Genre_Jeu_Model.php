@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-require_once(ENTITIES_DIR  . "Product_Entity.php");
+require_once(ENTITIES_DIR  . "Genre_Jeu_Entity.php");
 
-class Product_Model extends MY_Model {
+class Genre_Jeu_Model extends MY_Model {
     
 
     /**
@@ -18,19 +18,19 @@ class Product_Model extends MY_Model {
     public function __construct()
     {
         parent::__construct();
-        $this->setTable( "Product" );
-        $this->setEntity( "Product_Entity" );
+        $this->setTable( "Genre_Jeu" );
+        $this->setEntity( "Genre_Jeu_Entity" );
     }
 
 
     /**
     * Insérer
     *
-    * @param Product_Entity $obj
+    * @param Genre_Jeu_Entity $obj
     * @return bool
     */
     
-    public function insertProduct($obj) {
+    public function insertGenre_Jeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->replace($obj);
         }
@@ -41,11 +41,11 @@ class Product_Model extends MY_Model {
     /**
     * Modifier
     *
-    * @param Product_Entity $obj
+    * @param Genre_Jeu_Entity $obj
     * @return bool
     */
     
-    public function updateProduct($obj) {
+    public function updateGenre_Jeu($obj) {
         if ( isset( $obj->id ) ) {
             return $this->update( array( 'id'=>$obj->id ) , $obj );
         }
@@ -56,11 +56,11 @@ class Product_Model extends MY_Model {
     /**
     * Supprimer
     *
-    * @param Product_Entity $obj
+    * @param Genre_Jeu_Entity $obj
     * @return bool
     */
     
-    public function deleteProduct($obj) {
+    public function deleteGenre_Jeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->delete( array( 'id'=>$obj->id ));
         }
@@ -72,11 +72,11 @@ class Product_Model extends MY_Model {
     * Retourne une enregistrement à partir de l'id
     *
     * @param int $id
-    * @return Product_Entity
+    * @return Genre_Jeu_Entity
     */
     
-    public function getProduct( $id ) {
-        $data = $this->read( array( 'Product'=> $id ) );
+    public function getGenre_Jeu( $id ) {
+        $data = $this->read( array( 'Genre_Jeu'=> $id ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
@@ -88,10 +88,10 @@ class Product_Model extends MY_Model {
     /**
     * Retourne la liste des enregistrements
     *
-    * @return Product_Entity
+    * @return Genre_Jeu_Entity
     */
     
-    public function getProductList() {
+    public function getGenre_JeuList() {
         $data = $this->read();
         if(empty($data)){
             $error = $this->db->error();
