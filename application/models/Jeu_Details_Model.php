@@ -91,8 +91,8 @@ class Jeu_Details_Model extends MY_Model {
     * @return Jeu_Details_Entity
     */
     
-    public function getJeuDetailsList() {
-        $data = $this->read();
+    public function getJeuDetailsList($where = null) {
+        $data = $this->read($where);
         if(empty($data)){
             $error = $this->db->error();
             return false;
