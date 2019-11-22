@@ -86,6 +86,58 @@ class Stock_Model extends MY_Model {
 
 
     /**
+    * Retourne un stock
+    *
+    * @param int $id_jeu
+    * @param int $id_plateforme
+    * @return Stock_Entity
+    */
+    
+    public function getStockListByJeu( $id_jeu, $id_plateforme ) {
+        $data = $this->read( array( 'id_jeu'=> $id_jeu, 'id_plateforme'=>$id_plateforme ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data[0];
+    }
+
+
+    /**
+    * Retourne une liste de stock d'un jeu
+    *
+    * @param int $id_jeu
+    * @return Stock_Entity
+    */
+    
+    public function getStockListByJeu( $id_jeu ) {
+        $data = $this->read( array( 'id_jeu'=> $id_jeu ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
+    }
+
+
+    /**
+    * Retourne une liste de stock d'une plateforme
+    *
+    * @param int $id_plateforme
+    * @return Stock_Entity
+    */
+    
+    public function getStockListByPlateforme( $id_plateforme ) {
+        $data = $this->read( array( 'id_plateforme'=> $id_plateforme ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
+    }
+
+
+    /**
     * Retourne la liste des enregistrements
     *
     * @return Stock_Entity

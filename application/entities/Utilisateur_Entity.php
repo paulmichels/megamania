@@ -8,7 +8,6 @@ require_once(CORE_DIR  . "MY_Entity.php");
 
 class Utilisateur_Entity extends MY_Entity {
 
-    protected $id;
     protected $login;
     protected $mdp;
     protected $nom;
@@ -16,7 +15,7 @@ class Utilisateur_Entity extends MY_Entity {
     protected $adresse;
     protected $telephone;
     protected $date_inscription;
-    protected $role_utilisateur;
+    protected $role;
     
 
     /**

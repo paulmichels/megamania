@@ -9,9 +9,9 @@ require_once(CORE_DIR  . "MY_Entity.php");
 class Reservation_Entity extends MY_Entity {
 
     protected $id;
-    protected $date;
+    protected $date_reservation;
     protected $etat;
-    protected $id_utilisateur;
+    protected $login_utilisateur;
     protected $id_produit;
 
 

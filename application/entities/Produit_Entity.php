@@ -10,6 +10,7 @@ class Produit_Entity extends MY_Entity {
 
     protected $id;
     protected $nom;
+    protected $description;
 
 
     /**

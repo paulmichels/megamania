@@ -99,6 +99,11 @@ class Jeu_Model extends MY_Model {
         }
         return $data;
     }
+
+    public function test(){
+        $query = "SELECT * FROM JEU_DETAILS";
+        return $this->db->query($query)->result_array();
+    }
 }
 
 ?>
