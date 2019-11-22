@@ -73,8 +73,8 @@ class MY_Model extends CI_Model {
     */
 
     public function read($where = array()) {
-        $req = $this->db->get_where($this->getTable(), $where);
-        return $req->custom_result_object($this->entity);
+      $req = $this->db->get_where($this->getTable(), $where);
+      return $req->custom_result_object($this->entity);
     }
 
 

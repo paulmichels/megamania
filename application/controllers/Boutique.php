@@ -33,11 +33,68 @@ class Boutique extends CI_Controller {
 
 	public function search()
 	{
-		$plateforme = $this->input->post('plateforme');
-		$genre = $this->input->post('genre');
-		$editeur = $this->input->post('editeur');
-		$prix = $this->input->post('prix');
-		return json_encode('ok');
+		$data['plateforme'] = $this->input->post('plateforme');
+        $data['genre'] = $this->input->post('genre');
+        $data['editeur'] = $this->input->post('editeur');
+        $data['prix'] = $this->input->post('prix');
+
+        $filter = array();
+
+        $filter = 'prix >='.( (float) $data['prix']['prixMin']);
+        $filter .= ' AND prix <='.( (float) $data['prix']['prixMax']);
+
+        $i=0;
+        foreach ($data['plateforme'] as $key => $value) {
+            if($value=='true'){
+                if($i == 0){
+                    $filter .= ' AND (id_plateforme='.$key;
+                    $i++;
+                } else {
+                    $filter .= ' OR id_plateforme='.$key;
+                }
+            }
+        }
+
+        if($i>0){
+            $filter .= ')';
+        }
+
+        $i=0;
+        foreach ($data['genre'] as $key => $value) {
+            if($value=='true'){
+                if($i == 0){
+                    $filter .= ' AND (id_genre='.$key;
+                    $i++;
+                } else {
+                    $filter .= ' OR id_genre='.$key;
+                }
+            }
+        }
+
+        if($i>0){
+            $filter .= ')';
+        }
+
+        $i=0;
+        foreach ($data['editeur'] as $key => $value) {
+            if($value=='true'){
+                if($i == 0){
+                    $filter .= ' AND (id_editeur='.$key;
+                    $i++;
+                } else {
+                    $filter .= ' OR id_editeur='.$key;
+                }
+            }
+        }
+
+        if($i>0){
+            $filter .= ')';
+        }
+
+        echo json_encode(array(
+            'response' => $this->Jeu_Details_Model->getJeuDetailsList($filter),
+            'message' => 'OK'
+        ));
 	}
 
 	public function getAlbum(){

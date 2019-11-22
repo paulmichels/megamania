@@ -20,8 +20,8 @@
 							<div class="checkbox-filter">
 								<?php foreach ($plateforme as $key => $value) { ?>
 									<div class="input-checkbox">
-										<input type="checkbox" id="plateform-<?php echo $value->id ?>">
-										<label for="plateform-<?php echo $value->id ?>">
+										<input type="checkbox" id="plateforme-<?php echo $value->id ?>">
+										<label for="plateforme-<?php echo $value->id ?>">
 											<span></span>
 											<?php echo $value->nom ?>
 											<!--<small>(120)</small>-->
@@ -40,8 +40,8 @@
 
 								<?php foreach ($genre as $key => $value) { ?>
 									<div class="input-checkbox">
-										<input type="checkbox" id="category-<?php echo $value->id ?>">
-										<label for="category-<?php echo $value->id ?>">
+										<input type="checkbox" id="genre-<?php echo $value->id ?>">
+										<label for="genre-<?php echo $value->id ?>">
 											<span></span>
 											<?php echo $value->nom ?>
 											<!--<small>(120)</small>-->
@@ -58,8 +58,8 @@
 							<div class="checkbox-filter">
 								<?php foreach ($editeur as $key => $value) { ?>
 									<div class="input-checkbox">
-										<input type="checkbox" id="brand-<?php echo $value->id ?>">
-										<label for="brand-<?php echo $value->id ?>">
+										<input type="checkbox" id="editeur-<?php echo $value->id ?>">
+										<label for="editeur-<?php echo $value->id ?>">
 											<span></span>
 											<?php echo $value->nom ?>
 											<!--<small>(578)</small>-->
@@ -160,7 +160,7 @@
 		<script src="<?php echo base_url()?>assets/js/main.js"></script>
 		<script type="text/javascript">
 
-			$('filter-button').click(function(){
+			$('#filter-button').click(function(){
 				$.ajax({
                     method: "post",
                     url:  "<?php echo base_url()."index.php/boutique/search/"; ?>",
@@ -170,9 +170,9 @@
                         		$i = 0;
                             	foreach ($plateforme as $key => $value){
                             		if($i == 0){
-                            			echo $value->id.":$('#plateforme-".$value->id."').val()";
+                            			echo $value->id.":$('#plateforme-".$value->id."').prop('checked')";
                             		} else { 
-                            			echo ",".$value->id.":$('#plateforme-".$value->id."').val()";
+                            			echo ",".$value->id.":$('#plateforme-".$value->id."').prop('checked')";
                             		}
                             		$i++;
                             	} 
@@ -183,9 +183,9 @@
                         		$i = 0;
                             	foreach ($genre as $key => $value){
                             		if($i == 0){
-                            			echo $value->id.":$('#genre-".$value->id."').val()";
+                            			echo $value->id.":$('#genre-".$value->id."').prop('checked')";
                             		} else { 
-                            			echo ",".$value->id.":$('#genre-".$value->id."').val()";
+                            			echo ",".$value->id.":$('#genre-".$value->id."').prop('checked')";
                             		}
                             		$i++;
                             	}
@@ -196,9 +196,9 @@
                         		$i = 0;
                             	foreach ($editeur as $key => $value){
                             		if($i == 0){
-                            			echo $value->id.":$('#editeur-".$value->id."').val()";
+                            			echo $value->id.":$('#editeur-".$value->id."').prop('checked')";
                             		} else { 
-                            			echo ",".$value->id.":$('#editeur-".$value->id."').val()";
+                            			echo ",".$value->id.":$('#editeur-".$value->id."').prop('checked')";
                             		}
                             		$i++;
                             	}
@@ -210,10 +210,10 @@
                         }
                     },
                     success: function(data){
-                        console.log(data);
+                    	console.log(data);
                         try {
                             data = $.parseJSON(data);
-                            
+                            console.log(data);
                         } catch (e) {
 
                         }
