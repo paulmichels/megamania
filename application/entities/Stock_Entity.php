@@ -8,8 +8,8 @@ require_once(CORE_DIR  . "MY_Entity.php");
 
 class Stock_Entity extends MY_Entity {
 
-    protected $id;
-    protected $plateforme;
+    protected $id_jeu;
+    protected $id_plateforme;
     protected $prix;
     protected $quantite;
 

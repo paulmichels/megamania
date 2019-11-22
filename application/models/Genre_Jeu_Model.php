@@ -30,7 +30,7 @@ class Genre_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function insertGenre_Jeu($obj) {
+    public function insertGenreJeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->replace($obj);
         }
@@ -45,7 +45,7 @@ class Genre_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function updateGenre_Jeu($obj) {
+    public function updateGenreJeu($obj) {
         if ( isset( $obj->id ) ) {
             return $this->update( array( 'id'=>$obj->id ) , $obj );
         }
@@ -60,7 +60,7 @@ class Genre_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function deleteGenre_Jeu($obj) {
+    public function deleteGenreJeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->delete( array( 'id'=>$obj->id ));
         }
@@ -69,19 +69,36 @@ class Genre_Jeu_Model extends MY_Model {
 
 
     /**
-    * Retourne une enregistrement à partir de l'id
+    * Retourne la liste des genre d'un jeu
     *
-    * @param int $id
+    * @param int $id_jeu
     * @return Genre_Jeu_Entity
     */
     
-    public function getGenre_Jeu( $id ) {
-        $data = $this->read( array( 'id'=> $id ) );
+    public function getListGenreByJeu( $id_jeu ) {
+        $data = $this->read( array( 'id_jeu'=> $id_jeu ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
         }
-        return $data[0];
+        return $data;
+    }
+
+
+    /**
+    * Retourne la liste des jeux d'un genre
+    *
+    * @param int $id_genre
+    * @return Genre_Jeu_Entity
+    */
+    
+    public function getListJeubyGenre( $id_genre ) {
+        $data = $this->read( array( 'id_genre'=> $id_genre ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
     }
 
 
@@ -91,7 +108,7 @@ class Genre_Jeu_Model extends MY_Model {
     * @return Genre_Jeu_Entity
     */
     
-    public function getGenre_JeuList() {
+    public function getGenreJeuList() {
         $data = $this->read();
         if(empty($data)){
             $error = $this->db->error();

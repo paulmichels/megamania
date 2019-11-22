@@ -46,8 +46,8 @@ class Utilisateur_Model extends MY_Model {
     */
     
     public function updateUtilisateur($obj) {
-        if ( isset( $obj->id ) ) {
-            return $this->update( array( 'id'=>$obj->id ) , $obj );
+        if ( isset( $obj->login ) ) {
+            return $this->update( array( 'login'=>$obj->login ) , $obj );
         }
         return false;
     }
@@ -62,21 +62,21 @@ class Utilisateur_Model extends MY_Model {
     
     public function deleteUtilisateur($obj) {
         if(is_a($obj, $this->getEntity())){
-            return $this->delete( array( 'id'=>$obj->id ));
+            return $this->delete( array( 'login'=>$obj->login ));
         }
         return false; 
     }
 
 
     /**
-    * Retourne une enregistrement à partir de l'id
+    * Retourne une enregistrement à partir du login
     *
-    * @param int $id
+    * @param int $login
     * @return Utilisateur_Entity
     */
     
-    public function getUtilisateur( $id ) {
-        $data = $this->read( array( 'id'=> $id ) );
+    public function getUtilisateur( $login ) {
+        $data = $this->read( array( 'login'=> $login ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;

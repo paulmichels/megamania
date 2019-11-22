@@ -9,7 +9,7 @@ require_once(CORE_DIR  . "MY_Entity.php");
 class Genre_Entity extends MY_Entity {
 
     protected $id;
-    protected $genre;
+    protected $nom;
 
 
     /**
@@ -19,6 +19,13 @@ class Genre_Entity extends MY_Entity {
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function compare($id){
+    	if($this->id == $id){
+    		return true;
+    	}
+    	return false;
     }
 
 }

@@ -30,7 +30,7 @@ class Pegi_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function insertPegi_Jeu($obj) {
+    public function insertPegiJeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->replace($obj);
         }
@@ -45,7 +45,7 @@ class Pegi_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function updatePegi_Jeu($obj) {
+    public function updatePegiJeu($obj) {
         if ( isset( $obj->id ) ) {
             return $this->update( array( 'id'=>$obj->id ) , $obj );
         }
@@ -60,7 +60,7 @@ class Pegi_Jeu_Model extends MY_Model {
     * @return bool
     */
     
-    public function deletePegi_Jeu($obj) {
+    public function deletePegiJeu($obj) {
         if(is_a($obj, $this->getEntity())){
             return $this->delete( array( 'id'=>$obj->id ));
         }
@@ -69,14 +69,15 @@ class Pegi_Jeu_Model extends MY_Model {
 
 
     /**
-    * Retourne une enregistrement à partir de l'id
+    * Retourne une association pegi jeu
     *
-    * @param int $id
+    * @param int $id_pegi
+    * @param int $id_jeu
     * @return Pegi_Jeu_Entity
     */
     
-    public function getPegi_Jeu( $id ) {
-        $data = $this->read( array( 'id'=> $id ) );
+    public function getPegiJeu( $id_pegi, $id_jeu ) {
+        $data = $this->read( array( 'id_pegi'=> $id_pegi, 'id_jeu'=>$id_jeu ) );
         if(empty($data)){
             $error = $this->db->error();
             return false;
@@ -86,12 +87,46 @@ class Pegi_Jeu_Model extends MY_Model {
 
 
     /**
+    * Retourne la liste des jeux d'un pegi
+    *
+    * @param int $id_pegi
+    * @return Pegi_Jeu_Entity
+    */
+    
+    public function getPegiJeuByPegi( $id_pegi ) {
+        $data = $this->read( array( 'id_pegi'=> $id_pegi ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
+    }
+
+
+    /**
+    * Retourne la liste des pegi d'un jeu
+    *
+    * @param int $id_jeu
+    * @return Pegi_Jeu_Entity
+    */
+    
+    public function getPegiJeuByJeu( $id_jeu ) {
+        $data = $this->read( array( 'id_jeu'=> $id_jeu ) );
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
+    }
+
+
+    /**
     * Retourne la liste des enregistrements
     *
     * @return Pegi_Jeu_Entity
     */
     
-    public function getPegi_JeuList() {
+    public function getPegiJeuList() {
         $data = $this->read();
         if(empty($data)){
             $error = $this->db->error();
