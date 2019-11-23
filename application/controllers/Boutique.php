@@ -91,8 +91,10 @@ class Boutique extends CI_Controller {
             $filter .= ')';
         }
 
+        $list = $this->Jeu_Details_Model->getJeuDetailsList($filter);
+
         echo json_encode(array(
-            'response' => $this->Jeu_Details_Model->getJeuDetailsList($filter),
+            'response' => $list,
             'message' => 'OK'
         ));
 	}
