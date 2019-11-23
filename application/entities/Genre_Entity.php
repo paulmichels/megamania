@@ -6,7 +6,7 @@ require_once(CORE_DIR  . "MY_Entity.php");
 * Classe entitée Genre_Entity
 */
 
-class Genre_Entity extends MY_Entity {
+class Genre_Entity extends MY_Entity implements JsonSerializable{
 
     protected $id;
     protected $nom;
@@ -27,6 +27,16 @@ class Genre_Entity extends MY_Entity {
     	}
     	return false;
     }
+
+    public function jsonSerialize() {
+
+        $json = array(
+            'id' => $this->id,
+            'nom' => $this->nom,
+        );
+        return $json;
+    }
+
 
 }
 

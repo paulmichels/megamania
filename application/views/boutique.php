@@ -102,7 +102,7 @@
 					<div id="store" class="col-md-9">
 
 						<!-- store products -->
-						<div class="row">
+						<div class="row" id="game-list">
 							<!-- product -->
 							<?php foreach ($jeu as $key => $value) { ?>
 								<div class="col-md-4 col-xs-6">
@@ -114,22 +114,11 @@
 											</div>
 										</div>
 										<div class="product-body">
-											<p class="product-category">
-											<?php 
-											if(is_array($value->id_genre)){
-												foreach ($value->id_genre as $id => $id_genre) {
-													echo $genre[$id_genre - 1]->nom.' ';
-												}	
-											} else {
-												echo $genre[$id_genre - 1]->nom;
-											}
-											?>
-											</p>
-											<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo $value->nom ?></a></h3>
+											<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo strlen($value->nom) > 22 ? substr($value->nom,0,22)."..." : $value->nom; ?></a></h3>
 											<h4 class="product-price"><?php echo $value->prix ?>€</h4>
 										</div>
 										<div class="add-to-cart">
-											<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/product/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Réserver</button></a>
+											<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Réserver</button></a>
 										</div>
 									</div>
 								</div>
@@ -210,12 +199,15 @@
                         }
                     },
                     success: function(data){
-                    	console.log(data);
                         try {
                             data = $.parseJSON(data);
-                            console.log(data);
+                            var html = '';
+                            for (var i = 0; i < data.response.length; i++) {
+                            	html += jeuDetailsJSONToHTML(data.response[i]);
+                            }
+                            $('#game-list').html(html);
                         } catch (e) {
-
+                        	console.log(e);
                         }
                     },
                     error: function(data){
@@ -224,6 +216,28 @@
                 }); 
 			});
 			
+
+			function jeuDetailsJSONToHTML(jeuDetailsJSON){
+				console.log(jeuDetailsJSON);
+				var html = '';
+				html += '<div class="col-md-4 col-xs-6">';
+				html += '<div class="product">';
+				html += '<div class="product-img">';
+				html += '<img src="<?php echo base_url() ?>assets/img/jeux/' + jeuDetailsJSON.nom.replace(/ |%20/g, '_') + '/1" alt="" width="262" height="327">';
+				html += '<div class="product-label">';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="product-body">';
+				html += '<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=' + jeuDetailsJSON.id_jeu + '">' + (jeuDetailsJSON.nom.length > 22 ? (jeuDetailsJSON.nom.slice(0, 22) + '...') : jeuDetailsJSON.nom) + '</a></h3>';
+				html += '<h4 class="product-price">' + jeuDetailsJSON.prix + '€</h4>';
+				html += '</div>';
+				html += '<div class="add-to-cart">';
+				html += '<a href="<?php echo base_url() ?>index.php/product/?id=' + jeuDetailsJSON.id_jeu + '"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=?>' + jeuDetailsJSON.id_jeu + '"><i class="fa fa-shopping-cart"></i> Réserver</button></a>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				return html;
+			}
 
 		</script>
 
