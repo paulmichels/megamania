@@ -9,7 +9,8 @@ class Produit extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('Genre_Model');
         $this->load->model('Pegi_Model');
-        $this->load->model('Jeu_Details_Model');    
+        $this->load->model('Jeu_Details_Model');
+        $this->load->model('Reservation_Model')  ;
     }
 
 	public function index()
@@ -30,5 +31,21 @@ class Produit extends CI_Controller {
     public function getPhotos($album){
         $data['photos'] = array_diff(scandir('assets/img/jeux/'.str_replace(" ", "_", $album)), array('.', '..'));
         return $data['photos'];
+    }
+
+    public function book() {
+        $data['reservation'] = $this->input->post('reservation');
+        $query = "INSERT INTO reservation VALUES(
+            DEFAULT,
+            ".$data['reservation']['date_reservation'].",
+            ".$data['reservation']['etat'].",
+            ".$data['reservation']['login_utilisateur'].",
+            ".$data['reservation']['id_produit'].");";
+           // echo $query;
+       // $reservation->id = 'DEFAULT'
+        echo json_encode(array(
+            'response' => $this->Reservation_Model->insertQueryReservation($query),
+            'message'=> 'OK '
+        ));
     }
 }

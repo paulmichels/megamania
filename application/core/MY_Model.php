@@ -52,6 +52,10 @@ class MY_Model extends CI_Model {
         }
     }
 
+    public function query_manual($query) {
+        return $this->db->query($query);
+    }
+
     /**
     * Remplacer
     *

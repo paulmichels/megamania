@@ -87,7 +87,7 @@ CREATE TABLE Stock(
     id_jeu SERIAL REFERENCES Jeu(id),
     id_plateforme SERIAL REFERENCES Plateforme(id),
     prix numeric NOT NULL CHECK (prix > 0),
-    quantite INTEGER NOT NULL,
+    quantite INTEGER NOT NULL CHECK (quantite >= 0),
     PRIMARY KEY (id_jeu, id_plateforme)
 );
 
@@ -491,3 +491,23 @@ INSERT INTO Stock VALUES(41,4, 39.99, 5);
 INSERT INTO Stock VALUES(42,4, 22.34, 3);
 INSERT INTO Stock VALUES(43,4, 5.39, 1);
 INSERT INTO Stock VALUES(44,4, 25.68, 0);
+
+/*----- Functions and trigger ------*/
+
+CREATE OR REPLACE FUNCTION remove_stock()
+RETURNS TRIGGER AS
+$$
+    DECLARE
+    begin
+      UPDATE stock SET quantite = quantite-1
+      WHERE id_jeu = new.id_produit;
+      RETURN new;
+    end;
+$$
+LANGUAGE 'plpgsql';
+
+CREATE TRIGGER remove_stock
+AFTER INSERT
+ON Reservation
+FOR EACH ROW
+EXECUTE PROCEDURE remove_stock();
