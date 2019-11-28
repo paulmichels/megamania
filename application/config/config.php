@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/megamania';
+//$config['base_url'] = 'http://megamania.alwaysdata.net';
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +325,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = hex2bin('4b3ce823a537b2c48881f24e8ce6282096c15bceeba7b4035c590c38f7af6af2');
 
 /*
 |--------------------------------------------------------------------------

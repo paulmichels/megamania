@@ -108,8 +108,9 @@
 								<div class="col-md-4 col-xs-6">
 									<div class="product">
 										<div class="product-img">
-											<img src="<?php echo base_url() ?>assets/img/jeux/<?php echo str_replace(" ", "_", $value->nom) ?>/<?php echo $photos[str_replace(" ", "_", strtolower($value->nom))][0] ?>" alt=""
-											width="262" height="327">
+											<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
+											<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
+											width="262" height="327"></a>
 											<div class="product-label">
 											</div>
 										</div>
@@ -218,12 +219,13 @@
 			
 
 			function jeuDetailsJSONToHTML(jeuDetailsJSON){
-				console.log(jeuDetailsJSON);
 				var html = '';
 				html += '<div class="col-md-4 col-xs-6">';
 				html += '<div class="product">';
 				html += '<div class="product-img">';
-				html += '<img src="<?php echo base_url() ?>assets/img/jeux/' + jeuDetailsJSON.nom.replace(/ |%20/g, '_') + '/1" alt="" width="262" height="327">';
+				html += '<a href="<?php echo base_url() ?>index.php/produit/?id=' + jeuDetailsJSON.id_jeu + '">';
+				html += '<img src="<?php echo base_url() ?>assets/img/jeux/' + jeuDetailsJSON.nom.replace(/ |%20/g, '_').toLowerCase() + '/1.jpg" alt="" width="262" height="327">';
+				html += '</a>';
 				html += '<div class="product-label">';
 				html += '</div>';
 				html += '</div>';
