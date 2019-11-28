@@ -28,7 +28,7 @@ class Produit extends CI_Controller {
 	}
 
     public function getPhotos($album){
-        $data['photos'] = array_diff(scandir('assets/img/jeux/'.str_replace(" ", "_", $album)), array('.', '..'));
+        $data['photos'] = array_diff(scandir('assets/img/jeux/'.strtolower(str_replace(" ", "_", $album))), array('.', '..'));
         return $data['photos'];
     }
 }

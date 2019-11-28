@@ -17,7 +17,7 @@
 						<div id="product-main-img">
 							<?php foreach ($photos as $key => $value) {
 								echo '<div class="product-preview">';
-								echo '<img src="'.base_url().'assets/img/jeux/'.str_replace(" ", "_", $produit->nom).'/'.$value.'" alt="" >';
+								echo '<img src="'.base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $produit->nom)).'/'.$value.'" alt="" >';
 								echo '</div>';
 							} ?>
 						</div>
@@ -29,7 +29,7 @@
 						<div id="product-imgs">
 							<?php foreach ($photos as $key => $value) {
 								echo '<div class="product-preview">';
-								echo '<img src="'.base_url().'assets/img/jeux/'.str_replace(" ", "_", $produit->nom).'/'.$value.'" alt="">';
+								echo '<img src="'.base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $produit->nom)).'/'.$value.'" alt="">';
 								echo '</div>';
 							} ?>
 						</div>
@@ -98,7 +98,7 @@
 											<?php
 												if(is_array($produit->id_pegi)){
 													foreach ($produit->id_pegi as $id => $id_pegi) {
-														echo '<img src="'.base_url().'assets/img/pegi/'.$id_pegi.'" alt="" >';
+														echo '<img src="'.base_url().'assets/img/pegi/'.$id_pegi.'.png" alt="" >';
 													}	
 												} else {
 													echo '<img src="'.base_url().'assets/img/pegi/'.$pegi[$produit->id_pegi - 1]->id.'" alt="" >';
