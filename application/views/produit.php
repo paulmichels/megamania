@@ -147,7 +147,9 @@
 						try {
 							data = $.parseJSON(data);
 							$('#cart-quantity').html(parseInt($('#cart-quantity').html()) + 1);
-							$('#cart-summary-price').html(parseFloat($('#cart-total-price').html()) + parseFloat(data.response.prix));
+							console.log(parseFloat($('#cart-summary-price').html()));
+							console.log(parseFloat(data.response.prix));
+							$('#cart-summary-price').html(parseFloat($('#cart-summary-price').html()) + parseFloat(data.response.prix));
 							if($('#reservation-' + data.response.id_jeu).length){
 								$('#product-quantity-' + data.response.id_jeu).html(parseInt($('#product-quantity-' + data.response.id_jeu).html()) + 1);
 							} else {

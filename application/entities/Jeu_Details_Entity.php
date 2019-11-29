@@ -71,6 +71,22 @@ class Jeu_Details_Entity extends MY_Entity implements JsonSerializable {
         return $json;
     }
 
+    public function getObjectVars(){
+        return array(
+            'id_jeu', 
+            'nom', 
+            'description', 
+            'date_sortie', 
+            'id_genre', 
+            'id_plateforme', 
+            'prix', 
+            'quantite', 
+            'id_pegi', 
+            'id_editeur', 
+            'nom_editeur'
+        );
+    }
+
 }
 
 ?>

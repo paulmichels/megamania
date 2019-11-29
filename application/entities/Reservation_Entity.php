@@ -24,6 +24,16 @@ class Reservation_Entity extends MY_Entity {
         parent::__construct();
     }
 
+    public function getObjectVars(){
+        return array(
+            'id', 
+            'date_reservation', 
+            'etat', 
+            'login_utilisateur', 
+            'id_produit'
+        );
+    }
+
 }
 
 ?>
