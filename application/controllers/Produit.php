@@ -10,6 +10,7 @@ class Produit extends CI_Controller {
         $this->load->model('Genre_Model');
         $this->load->model('Pegi_Model');
         $this->load->model('Jeu_Details_Model');    
+        $this->load->model('Plateforme_Model');    
     }
 
 	public function index()
@@ -20,6 +21,7 @@ class Produit extends CI_Controller {
         } else {
             $data['produit'] = $this->Jeu_Details_Model->getJeuDetails($idProduit);
             $data['genre'] = $this->Genre_Model->getGenreList();
+            $data['plateforme'] = $this->Plateforme_Model->getPlateformeList();
             $data['pegi'] = $this->Pegi_Model->getPegiList();
             $data['reservation'] = array();
             $data['photos'] = $this->getPhotos($data['produit']->nom);

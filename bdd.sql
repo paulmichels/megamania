@@ -491,3 +491,39 @@ INSERT INTO Stock VALUES(41,4, 39.99, 5);
 INSERT INTO Stock VALUES(42,4, 22.34, 3);
 INSERT INTO Stock VALUES(43,4, 5.39, 1);
 INSERT INTO Stock VALUES(44,4, 25.68, 0);
+
+CREATE OR REPLACE FUNCTION public."searchGame"(p_query text,p_id_plateforme integer)
+   RETURNS jeu_details
+AS $$
+BEGIN
+   RETURN QUERY SELECT * 
+    FROM jeu_details
+    WHERE nom LIKE p_query ESCAPE '!'
+    AND id_plateforme = p_id_plateforme;
+END; $$ 
+ 
+LANGUAGE 'plpgsql';
+
+
+
+
+DROP FUNCTION "searchGame"(text,integer);
+CREATE OR REPLACE FUNCTION public."searchGame"(p_query text,p_id_plateforme integer)
+   RETURNS SETOF jeu_details
+AS $$
+
+DECLARE
+    r jeu_details%rowtype;
+
+BEGIN
+    FOR r IN SELECT * FROM jeu_details
+        WHERE nom LIKE p_query ESCAPE '!'
+        AND id_plateforme = p_id_plateforme
+        LOOP
+            RETURN NEXT r;
+        END LOOP;
+        RETURN;
+END; $$ 
+ 
+LANGUAGE 'plpgsql';
+

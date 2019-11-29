@@ -103,29 +103,32 @@
 
 						<!-- store products -->
 						<div class="row" id="game-list">
-							<!-- product -->
-							<?php foreach ($jeu as $key => $value) { ?>
-								<div class="col-md-4 col-xs-6">
-									<div class="product">
-										<div class="product-img">
-											<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
-											<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
-											width="262" height="327"></a>
-											<div class="product-label">
+							<?php 
+							if(is_array($jeu)){
+								foreach ($jeu as $key => $value) { ?>
+									<div class="col-md-4 col-xs-6">
+										<div class="product">
+											<div class="product-img">
+												<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
+												<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
+												width="262" height="327"></a>
+												<div class="product-label">
+												</div>
+											</div>
+											<div class="product-body">
+												<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo strlen($value->nom) > 22 ? substr($value->nom,0,22)."..." : $value->nom; ?></a></h3>
+												<h4 class="product-price"><?php echo $value->prix ?>€</h4>
+											</div>
+											<div class="add-to-cart">
+												<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Réserver</button></a>
 											</div>
 										</div>
-										<div class="product-body">
-											<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo strlen($value->nom) > 22 ? substr($value->nom,0,22)."..." : $value->nom; ?></a></h3>
-											<h4 class="product-price"><?php echo $value->prix ?>€</h4>
-										</div>
-										<div class="add-to-cart">
-											<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Réserver</button></a>
-										</div>
 									</div>
-								</div>
-							<?php } ?>
-							<!-- /product -->
-
+								<?php }
+							} else { ?>
+								<p>Aucun résultat pour la recherche "<?php echo $this->input->get('query') ?>"<?php echo $this->input->get('plateforme') != 0 ? " sur ".$plateforme[$this->input->get('plateforme') - 1]->nom:"" ?></p>
+							<?php }
+							?>
 						</div>
 						<!-- /store products -->
 					</div>

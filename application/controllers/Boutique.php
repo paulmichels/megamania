@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Boutique extends CI_Controller {
 
+    private $plateforme_id;
+    private $query;
+
     public function __construct()
     {
             parent::__construct();
@@ -20,12 +23,19 @@ class Boutique extends CI_Controller {
 
 	public function index()
 	{
+        $this->plateforme_id = $this->input->get('plateforme');
+        $this->query = $this->input->get('query');
+
 		$data['plateforme'] = $this->Plateforme_Model->getPlateformeList();
 		$data['genre'] = $this->Genre_Model->getGenreList();
 		$data['editeur'] = $this->Editeur_Model->getEditeurList();
 		$data['pegi'] = $this->Pegi_Model->getPegiList();
 		$data['produit'] = $this->Produit_Model->getProduitList();
-		$data['jeu'] = $this->Jeu_Details_Model->getJeuDetailsList();
+        if($this->plateforme_id == null){
+            $data['jeu'] = $this->Jeu_Details_Model->getJeuDetailsList();
+        } else {
+            $data['jeu'] = $this->Jeu_Details_Model->searchJeuDetailsList($this->query, $this->plateforme_id != 0? $this->plateforme_id:null);
+        }
 		$data['reservation'] = array();
 		$data['photos'] = $this->getAlbum();
 		$this->load->view('boutique', $data);

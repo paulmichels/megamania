@@ -31,8 +31,8 @@
 				<!-- SEARCH BAR -->
 				<div class="col-md-6">
 					<div class="header-search">
-						<form>
-							<select class="input-select">
+						<form action="<?php echo base_url().'index.php/boutique/' ?>" method="get">
+							<select class="input-select" id="plateforme-search" name="plateforme">
 								<option value="0">Plateforme</option>
 								<?php
 								foreach ($plateforme as $key => $value){
@@ -40,7 +40,7 @@
 								}
 								?>
 							</select>
-							<input class="input" placeholder="Rechercher un produit">
+							<input class="input" id="query-search" name="query" placeholder="Rechercher un produit">
 							<button class="search-btn" id="search-btn">Rechercher</button>
 						</form>
 					</div>
