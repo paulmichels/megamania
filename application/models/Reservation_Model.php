@@ -32,9 +32,13 @@ class Reservation_Model extends MY_Model {
     
     public function insertReservation($obj) {
         if(is_a($obj, $this->getEntity())){
-            return $this->replace($obj);
+            return $this->create($obj);
         }
         return false;
+    }
+
+    public function insertQueryReservation($query) {
+        return $this->query_manual($query);
     }
 
 
