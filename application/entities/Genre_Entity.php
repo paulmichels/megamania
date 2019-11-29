@@ -37,7 +37,12 @@ class Genre_Entity extends MY_Entity implements JsonSerializable{
         return $json;
     }
 
-
+    public function getObjectVars(){
+        return array(
+            'id', 
+            'nom'
+        );
+    }
 }
 
 ?>

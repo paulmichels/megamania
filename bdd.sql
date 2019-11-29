@@ -494,7 +494,29 @@ INSERT INTO Stock VALUES(42,4, 22.34, 3);
 INSERT INTO Stock VALUES(43,4, 5.39, 1);
 INSERT INTO Stock VALUES(44,4, 25.68, 0);
 
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 1);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 1);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 1);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 1);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 16);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 16);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 23);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 23);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 28);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 28);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 28);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 35);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 35);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 40);
+INSERT INTO Reservation VALUES(DEFAULT, '2019-11-29 00:00:00', 'En cours', 'test@test.com', 40);
+
 /*----- Functions and trigger ------*/
+
+CREATE TRIGGER remove_stock
+AFTER INSERT
+ON Reservation
+FOR EACH ROW
+EXECUTE PROCEDURE remove_stock();
 
 CREATE OR REPLACE FUNCTION remove_stock()
 RETURNS TRIGGER AS
@@ -507,12 +529,6 @@ $$
     end;
 $$
 LANGUAGE 'plpgsql';
-
-CREATE TRIGGER remove_stock
-AFTER INSERT
-ON Reservation
-FOR EACH ROW
-EXECUTE PROCEDURE remove_stock();
 
 
 CREATE OR REPLACE FUNCTION public."searchGame"(p_query text,p_id_plateforme integer)

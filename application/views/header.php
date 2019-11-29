@@ -6,7 +6,7 @@
 				<li><a href="#"><i class="fa fa-envelope-o"></i>megamania.cnam@hotmail.fr</a></li>
 			</ul>
 			<ul class="header-links pull-right">
-				<li><a href="#"><i class="fa fa-user-o"></i> <?php echo $utilisateur->login ?></a></li>
+				<li><a href="<?php echo base_url() ?>index.php/admin/jeu"><i class="fa fa-user-o"></i> <?php echo $utilisateur->login ?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 												<h3 class="product-name"><a href="<?php echo base_url()."/index.php/product/".$value->id_jeu ?>">
 													<?php echo $value->nom ?>
 												</a></h3>
-												<h4 class="product-price"><?php echo $value->prix ?></h4>
+												<h4 class="product-price"><?php echo $value->prix ?> €</h4>
 												<b>Quantité : <b id="product-quantity-<?php echo $value->id_jeu ?>"><?php echo $reservation_count[array_search($value->id_jeu, array_column($reservation_count, 'id_jeu'))]['quantite'] ?></b></b>
 											</div>
 										</div>

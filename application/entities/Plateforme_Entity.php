@@ -21,6 +21,13 @@ class Plateforme_Entity extends MY_Entity {
         parent::__construct();
     }
 
+    public function getObjectVars(){
+        return array(
+            'id', 
+            'nom'
+        );
+    }
+
 }
 
 ?>
