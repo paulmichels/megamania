@@ -5,64 +5,66 @@
 		<!-- HEADER -->
 		<?php include('header.php'); ?>
 
-				<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
+		<?php if(!empty($top_reservation)){ ?>
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Top des réservations</h3>
-						</div>
-					</div>
-					<!-- /section title -->
-
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-									<?php 
-										if(is_array($top_reservation)){
-											foreach ($top_reservation as $key => $value) { ?>
-												<div class="col-md-4 col-xs-6">
-													<div class="product">
-														<div class="product-img">
-															<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
-															<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
-															width="262" height="327"></a>
-															<div class="product-label">
-															</div>
-														</div>
-														<div class="product-body">
-															<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo strlen($value->nom) > 22 ? substr($value->nom,0,22)."..." : $value->nom; ?></a></h3>
-															<h4 class="product-price"><?php echo $value->prix ?>€</h4>
-														</div>
-														<div class="add-to-cart">
-															<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Voir le produit</button></a>
-														</div>
-													</div>
-												</div>
-											<?php }
-										} ?>
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
-								<!-- /tab -->
+						<!-- section title -->
+						<div class="col-md-12">
+							<div class="section-title">
+								<h3 class="title">Top des réservations</h3>
 							</div>
 						</div>
+						<!-- /section title -->
+
+						<!-- Products tab & slick -->
+						<div class="col-md-12">
+							<div class="row">
+								<div class="products-tabs">
+									<!-- tab -->
+									<div id="tab1" class="tab-pane active">
+										<div class="products-slick" data-nav="#slick-nav-1">
+										<?php 
+											if(is_array($top_reservation)){
+												foreach ($top_reservation as $key => $value) { ?>
+													<div class="col-md-4 col-xs-6">
+														<div class="product">
+															<div class="product-img">
+																<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
+																<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
+																width="262" height="327"></a>
+																<div class="product-label">
+																</div>
+															</div>
+															<div class="product-body">
+																<h3 class="product-name"><a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><?php echo strlen($value->nom) > 22 ? substr($value->nom,0,22)."..." : $value->nom; ?></a></h3>
+																<h4 class="product-price"><?php echo $value->prix ?>€</h4>
+															</div>
+															<div class="add-to-cart">
+																<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Voir le produit</button></a>
+															</div>
+														</div>
+													</div>
+												<?php }
+											} ?>
+										</div>
+										<div id="slick-nav-1" class="products-slick-nav"></div>
+									</div>
+									<!-- /tab -->
+								</div>
+							</div>
+						</div>
+						<!-- Products tab & slick -->
 					</div>
-					<!-- Products tab & slick -->
+					<!-- /row -->
 				</div>
-				<!-- /row -->
+				<!-- /container -->
 			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
+			<!-- /SECTION -->
+		<?php } ?>
 
 		<!-- SECTION -->
 		<div class="section">
