@@ -37,8 +37,16 @@ class Reservation_Model extends MY_Model {
         return false;
     }
 
-    public function insertQueryReservation($query) {
-        return $this->query_manual($query);
+    /**
+    * Insérer
+    *
+    * @param Reservation_Entity $obj
+    * @return bool
+    */
+
+    public function insertQueryReservation($obj) {
+        $query = "INSERT INTO reservation VALUES(DEFAULT, CURRENT_TIMESTAMP, ".$obj->etat.", ".$obj->login_utilisateur.", ".$obj->id_produit.")";
+        return $this->db->query($query);
     }
 
 

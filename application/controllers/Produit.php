@@ -10,7 +10,9 @@ class Produit extends CI_Controller {
         $this->load->model('Genre_Model');
         $this->load->model('Pegi_Model');
         $this->load->model('Jeu_Details_Model');    
+        $this->load->model('Reservation_Model');    
         $this->load->model('Plateforme_Model');    
+        $this->load->model('Utilisateur_Model');    
     }
 
 	public function index()
@@ -25,6 +27,7 @@ class Produit extends CI_Controller {
             $data['pegi'] = $this->Pegi_Model->getPegiList();
             $data['reservation'] = array();
             $data['photos'] = $this->getPhotos($data['produit']->nom);
+            $data['utilisateur'] = $this->Utilisateur_Model->getUtilisateurList();
             $this->load->view('produit', $data);
         }
 	}
@@ -36,16 +39,14 @@ class Produit extends CI_Controller {
 
     public function book() {
         $data['reservation'] = $this->input->post('reservation');
-        $query = "INSERT INTO reservation VALUES(
-            DEFAULT,
-            ".$data['reservation']['date_reservation'].",
-            ".$data['reservation']['etat'].",
-            ".$data['reservation']['login_utilisateur'].",
-            ".$data['reservation']['id_produit'].");";
-           // echo $query;
-       // $reservation->id = 'DEFAULT'
+
+        $reservation = new Reservation_Entity();
+        $reservation->etat = $data['reservation']['etat'];
+        $reservation->login_utilisateur = $data['reservation']['login_utilisateur'];
+        $reservation->id_produit = $data['reservation']['id_produit'];
+
         echo json_encode(array(
-            'response' => $this->Reservation_Model->insertQueryReservation($query),
+            'response' => $this->Reservation_Model->insertQueryReservation($reservation),
             'message'=> 'OK '
         ));
     }

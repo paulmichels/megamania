@@ -104,10 +104,10 @@ class Jeu_Details_Model extends MY_Model {
         if($query != null){
             $this->db->like('nom', $query);
         }
-        return $this->getJeuDetailsList($id_plateforme != null ? array('id_plateforme' => $id_plateforme) : array());
+        //return $this->getJeuDetailsList($id_plateforme != null ? array('id_plateforme' => $id_plateforme) : array());
         //Ne marche pas, mais marche dans la console pgadmin
         $query = $this->db->query("SELECT * FROM public.\"searchGame\"('%".$query."%'::TEXT, ".$id_plateforme.")");
-        return $query;
+        return Jeu_Details_Entity::mergeInOneArray($query->custom_result_object($this->entity));
     }
 }
 

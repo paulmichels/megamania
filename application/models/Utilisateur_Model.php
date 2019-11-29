@@ -93,13 +93,8 @@ class Utilisateur_Model extends MY_Model {
     
     public function getUtilisateurList() {
         $data = $this->read();
-        if(empty($data)){
-            $error = $this->db->error();
-            return false;
-        }
         return $data;
     }
-
 
     
 // Insert registration data in database

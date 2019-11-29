@@ -128,6 +128,8 @@ CREATE VIEW JEU_DETAILS AS
 -- Insert some data.
 -----------------------------------------------------------------------------
 
+INSERT INTO Utilisateur VALUES ('test@test.com', 'test', 'test', 'test', 'test', '0000', CURRENT_TIMESTAMP, 'test');
+
 INSERT INTO Pegi VALUES (1, '3');
 INSERT INTO Pegi VALUES (2, '7');
 INSERT INTO Pegi VALUES (3, '12');
@@ -514,7 +516,7 @@ EXECUTE PROCEDURE remove_stock();
 
 
 CREATE OR REPLACE FUNCTION public."searchGame"(p_query text,p_id_plateforme integer)
-   RETURNS jeu_details
+   RETURNS SETOF jeu_details
 AS $$
 BEGIN
    RETURN QUERY SELECT * 
