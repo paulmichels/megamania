@@ -6,7 +6,7 @@
 				<li><a href="#"><i class="fa fa-envelope-o"></i>megamania.cnam@hotmail.fr</a></li>
 			</ul>
 			<ul class="header-links pull-right">
-				<li><a href="#"><i class="fa fa-user-o"></i> Mon compte</a></li>
+				<li><a href="#"><i class="fa fa-user-o"></i> <?php echo $utilisateur->login ?></a></li>
 			</ul>
 		</div>
 	</div>
@@ -62,17 +62,17 @@
 								<div class="cart-list">
 									<?php
 									foreach ($reservation as $key => $value) { ?>
-										<div class="product-widget" id="reservation-<?php echo $value->id?>">
+										<div class="product-widget" id="reservation-<?php echo $value->id_jeu?>">
 											<div class="product-img">
-												<img src="<?php echo base_url() ?>/assets/img/<?php echo str_replace(" ", "_", "Red Dead Redemption 2	"/*$value->nom*/) ?>.png" alt="">
+												<img src="<?php echo base_url() ?>assets/img/jeux/<?php echo strtolower(str_replace(" ", "_", "$value->nom")) ?>/1.jpg" alt="">
 											</div>
 											<div class="product-body">
-												<h3 class="product-name"><a href="<?php echo base_url()."/index.php/product/".$value->id ?>">
+												<h3 class="product-name"><a href="<?php echo base_url()."/index.php/product/".$value->id_jeu ?>">
 													<?php echo $value->nom ?>
 												</a></h3>
 												<h4 class="product-price"><?php echo $value->prix ?></h4>
 											</div>
-											<button class="delete" id="delete-<?php echo $value->id ?>"><i class="fa fa-close"></i></button>
+											<button class="delete" id="delete-<?php echo $value->id_jeu ?>"><i class="fa fa-close"></i></button>
 										</div>
 									<?php }?>
 								</div>

@@ -27,7 +27,8 @@ class Produit extends CI_Controller {
             $data['pegi'] = $this->Pegi_Model->getPegiList();
             $data['reservation'] = array();
             $data['photos'] = $this->getPhotos($data['produit']->nom);
-            $data['utilisateur'] = $this->Utilisateur_Model->getUtilisateurList();
+            $data['utilisateur'] = $this->Utilisateur_Model->getUtilisateur('test@test.com');
+            $data['reservation'] = $this->Reservation_Model->getReservationAsJeu($data['utilisateur']->login);
             $this->load->view('produit', $data);
         }
 	}

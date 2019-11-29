@@ -120,7 +120,7 @@
 												<h4 class="product-price"><?php echo $value->prix ?>€</h4>
 											</div>
 											<div class="add-to-cart">
-												<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Réserver</button></a>
+												<a href="<?php echo base_url().'index.php/produit/?id='.$value->id_jeu?>"><button class="add-to-cart-btn" href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>"><i class="fa fa-shopping-cart"></i> Voir le produit</button></a>
 											</div>
 										</div>
 									</div>
@@ -219,7 +219,6 @@
                     }
                 }); 
 			});
-			
 
 			function jeuDetailsJSONToHTML(jeuDetailsJSON){
 				var html = '';

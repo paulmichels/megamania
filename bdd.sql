@@ -527,3 +527,14 @@ END; $$
  
 LANGUAGE 'plpgsql';
 
+
+CREATE OR REPLACE FUNCTION public."reservationUtilisateur"(p_login_utilisateur text)
+   RETURNS SETOF jeu_details
+AS $$
+BEGIN
+   RETURN QUERY SELECT * 
+    FROM jeu_details
+    WHERE jeu_details.id_jeu IN (SELECT id_produit FROM reservation WHERE login_utilisateur = p_login_utilisateur);
+END; $$ 
+ 
+LANGUAGE 'plpgsql';
