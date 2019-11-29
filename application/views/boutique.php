@@ -5,29 +5,29 @@
 		<!-- HEADER -->
 		<?php include('header.php'); ?>
 
-				<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
+		<?php if(!empty($top_reservation)){?>
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
 
-					<!-- section title -->
-					<div class="col-md-12">
-						<div class="section-title">
-							<h3 class="title">Top des réservations</h3>
+						<!-- section title -->
+						<div class="col-md-12">
+							<div class="section-title">
+								<h3 class="title">Top des réservations</h3>
+							</div>
 						</div>
-					</div>
-					<!-- /section title -->
+						<!-- /section title -->
 
-					<!-- Products tab & slick -->
-					<div class="col-md-12">
-						<div class="row">
-							<div class="products-tabs">
-								<!-- tab -->
-								<div id="tab1" class="tab-pane active">
-									<div class="products-slick" data-nav="#slick-nav-1">
-									<?php 
-										if(is_array($top_reservation)){
+						<!-- Products tab & slick -->
+						<div class="col-md-12">
+							<div class="row">
+								<div class="products-tabs">
+									<!-- tab -->
+									<div id="tab1" class="tab-pane active">
+										<div class="products-slick" data-nav="#slick-nav-1">
+										<?php 
 											foreach ($top_reservation as $key => $value) { ?>
 												<div class="col-md-4 col-xs-6">
 													<div class="product">
@@ -47,21 +47,21 @@
 														</div>
 													</div>
 												</div>
-											<?php }
-										} ?>
+											<?php } ?>
+										</div>
+										<div id="slick-nav-1" class="products-slick-nav"></div>
 									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
+									<!-- /tab -->
 								</div>
-								<!-- /tab -->
 							</div>
 						</div>
+						<!-- Products tab & slick -->
 					</div>
-					<!-- Products tab & slick -->
+					<!-- /row -->
 				</div>
-				<!-- /row -->
+				<!-- /container -->
 			</div>
-			<!-- /container -->
-		</div>
+		<?php } ?>
 		<!-- /SECTION -->
 
 		<!-- SECTION -->
