@@ -47,7 +47,7 @@
 							</div>
 							<p><!-- <?php echo $produit->description ?> --></p>
 							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Réserver</button>
+								<button class="add-to-cart-btn" id="reservation-button"><i class="fa fa-shopping-cart"></i> Réserver</button>
 							</div>
 
 							<ul class="product-links">
@@ -130,6 +130,35 @@
 		<script src="<?php echo base_url()?>assets/js/nouislider.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/jquery.zoom.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/main.js"></script>
+		<script type="text/javascript">
+			$('#reservation-button').click(function() {
+				$.ajax({
+					method: "post",
+					url: "<?php echo base_url()."index.php/produit/book/";?>",
+					data: {
+						reservation: {
+							date_reservation: 'current_timestamp',
+							etat: "'En cours'",
+							login_utilisateur: "'test@test.com'", //because we only have 1 user now
+							id_produit: <?php echo $produit->id_jeu ?>
+						}
+					},
+					success: function(data){
+						console.log(data);
+						try {
+							data = $.parseJSON(data);
+							console.log(data);
+						}
+						catch(e){
+							console.log(e);
+						}
+					},
+					error: function(data) {
+						console.log(data);
+					}
+				})
+			})
+		</script>
 
 	</body>
 </html>

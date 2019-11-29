@@ -33,4 +33,20 @@ class Produit extends CI_Controller {
         $data['photos'] = array_diff(scandir('assets/img/jeux/'.strtolower(str_replace(" ", "_", $album))), array('.', '..'));
         return $data['photos'];
     }
+
+    public function book() {
+        $data['reservation'] = $this->input->post('reservation');
+        $query = "INSERT INTO reservation VALUES(
+            DEFAULT,
+            ".$data['reservation']['date_reservation'].",
+            ".$data['reservation']['etat'].",
+            ".$data['reservation']['login_utilisateur'].",
+            ".$data['reservation']['id_produit'].");";
+           // echo $query;
+       // $reservation->id = 'DEFAULT'
+        echo json_encode(array(
+            'response' => $this->Reservation_Model->insertQueryReservation($query),
+            'message'=> 'OK '
+        ));
+    }
 }
