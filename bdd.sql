@@ -540,6 +540,21 @@ END; $$
 LANGUAGE 'plpgsql';
 
 
+CREATE OR REPLACE FUNCTION public."topReservation"()
+   RETURNS SETOF jeu_details
+AS $$
+BEGIN
+	RETURN QUERY SELECT * 
+	FROM jeu_details
+	WHERE id_jeu IN(
+	SELECT id_produit
+		FROM reservation
+		GROUP BY id_produit
+		LIMIT 5);
+END; $$ 
+LANGUAGE 'plpgsql';
+
+
 CREATE OR REPLACE FUNCTION public."countReservation"(p_login_utilisateur text)
    RETURNS TABLE(id_jeu INTEGER, quantite BIGINT)
 AS $$
@@ -551,3 +566,4 @@ BEGIN
 END; $$ 
  
 LANGUAGE 'plpgsql';
+

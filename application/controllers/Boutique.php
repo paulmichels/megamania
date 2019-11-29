@@ -38,7 +38,9 @@ class Boutique extends CI_Controller {
         }
         $data['utilisateur'] = $this->Utilisateur_Model->getUtilisateur('test@test.com');
         $data['reservation'] = $this->Reservation_Model->getReservationAsJeu($data['utilisateur']->login);
+        $data['top_reservation'] = $this->Reservation_Model->getTopReservation();
         $data['reservation_count'] = $this->Reservation_Model->countReservation($data['utilisateur']->login);
+
 		$data['photos'] = $this->getAlbum();
 		$this->load->view('boutique', $data);
 	}
