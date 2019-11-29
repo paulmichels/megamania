@@ -29,6 +29,7 @@ class Produit extends CI_Controller {
             $data['photos'] = $this->getPhotos($data['produit']->nom);
             $data['utilisateur'] = $this->Utilisateur_Model->getUtilisateur('test@test.com');
             $data['reservation'] = $this->Reservation_Model->getReservationAsJeu($data['utilisateur']->login);
+            $data['reservation_count'] = $this->Reservation_Model->countReservation($data['utilisateur']->login);
             $this->load->view('produit', $data);
         }
 	}
@@ -46,9 +47,17 @@ class Produit extends CI_Controller {
         $reservation->login_utilisateur = $data['reservation']['login_utilisateur'];
         $reservation->id_produit = $data['reservation']['id_produit'];
 
-        echo json_encode(array(
-            'response' => $this->Reservation_Model->insertQueryReservation($reservation),
-            'message'=> 'OK '
-        ));
+        if($this->Reservation_Model->insertQueryReservation($reservation)){
+            echo json_encode(array(
+                'response' => $this->Jeu_Details_Model->getJeuDetails($reservation->id_produit),
+                'message'=> 'OK'
+            ));
+        } else {
+            echo json_encode(array(
+                'response' => false,
+                'message'=> 'NOK'
+            ));
+        }
+
     }
 }

@@ -131,6 +131,7 @@
 		<script src="<?php echo base_url()?>assets/js/jquery.zoom.min.js"></script>
 		<script src="<?php echo base_url()?>assets/js/main.js"></script>
 		<script type="text/javascript">
+
 			$('#reservation-button').click(function() {
 				$.ajax({
 					method: "post",
@@ -143,10 +144,16 @@
 						}
 					},
 					success: function(data){
-						console.log(data);
 						try {
 							data = $.parseJSON(data);
-							console.log(data);
+							$('#cart-quantity').html(parseInt($('#cart-quantity').html()) + 1);
+							$('#cart-summary-price').html(parseFloat($('#cart-total-price').html()) + parseFloat(data.response.prix));
+							if($('#reservation-' + data.response.id_jeu).length){
+								$('#product-quantity-' + data.response.id_jeu).html(parseInt($('#product-quantity-' + data.response.id_jeu).html()) + 1);
+							} else {
+								$('#cart-list').append(cartContentHtml(data.response));
+							}
+
 						}
 						catch(e){
 							console.log(e);
@@ -156,7 +163,25 @@
 						console.log(data);
 					}
 				})
-			})
+			});
+
+			function cartContentHtml(jeuDetailsJSON){
+				html = '';
+				html += '<div class="product-widget" id="reservation-' + jeuDetailsJSON.id_jeu + '>';
+				html += '<div class="product-widget" id="reservation-' + jeuDetailsJSON.id_jeu + '">';
+				html += '<div class="product-img">';
+				html += '<img src="<?php echo base_url() ?>assets/img/jeux/' + jeuDetailsJSON.nom.replace(/ |%20/g, '_').toLowerCase() + '/1.jpg" alt="">';
+				html += '</div>';
+				html += '<div class="product-body">';
+				html += '<h3 class="product-name"><a href="<?php echo base_url()."/index.php/product/"?>' + jeuDetailsJSON.id_jeu + '">';
+				html += jeuDetailsJSON.nom;
+				html += '</a></h3>';
+				html += '<h4 class="product-price">' + jeuDetailsJSON.prix + '</h4>';
+				html += '<b>Quantité : <b id="product-quantity">1</b></b>';
+				html += '</div>';
+				html += '</div>';
+				return html;
+			}
 		</script>
 
 	</body>
