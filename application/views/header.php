@@ -55,11 +55,11 @@
 								<i class="fa fa-shopping-cart"></i>
 								<span>Réservations</span>
 								<!-- TODO -->
-								<div class="qty"><?php echo count($reservation) ?></div>
+								<div class="qty" id="cart-quantity"><?php echo array_sum(array_column($reservation_count,'quantite')); ?></div>
 							</a>
 							<!-- TODO -->
 							<div class="cart-dropdown">
-								<div class="cart-list">
+								<div class="cart-list" id="cart-list">
 									<?php
 									foreach ($reservation as $key => $value) { ?>
 										<div class="product-widget" id="reservation-<?php echo $value->id_jeu?>">
@@ -71,20 +71,19 @@
 													<?php echo $value->nom ?>
 												</a></h3>
 												<h4 class="product-price"><?php echo $value->prix ?></h4>
+												<b>Quantité : <b id="product-quantity-<?php echo $value->id_jeu ?>"><?php echo $reservation_count[array_search($value->id_jeu, array_column($reservation_count, 'id_jeu'))]['quantite'] ?></b></b>
 											</div>
-											<button class="delete" id="delete-<?php echo $value->id_jeu ?>"><i class="fa fa-close"></i></button>
 										</div>
 									<?php }?>
 								</div>
 								<div class="cart-summary">
-									<small><?php echo count($reservation) ?> réservations</small>
-									<h5>Total: <?php 
+									<br><b>Total: <?php 
 										$count = 0; 
 										foreach ($reservation as $key => $value) {
-											$count += $value->prix;
+											$count += ($value->prix * $reservation_count[array_search($value->id_jeu, array_column($reservation_count, 'id_jeu'))]['quantite']);
 										} 
-										echo $count;
-									?></h5>
+										echo '<b id="cart-summary-price">'.$count.'</b> €';
+									?></b>
 								</div>
 							</div>
 						</div>

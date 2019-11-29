@@ -538,3 +538,16 @@ BEGIN
 END; $$ 
  
 LANGUAGE 'plpgsql';
+
+
+CREATE OR REPLACE FUNCTION public."countReservation"(p_login_utilisateur text)
+   RETURNS TABLE(id_jeu INTEGER, quantite BIGINT)
+AS $$
+BEGIN
+   RETURN QUERY SELECT id_produit, count(id_produit) 
+   FROM reservation 
+   WHERE login_utilisateur = p_login_utilisateur
+   GROUP by id_produit;
+END; $$ 
+ 
+LANGUAGE 'plpgsql';
