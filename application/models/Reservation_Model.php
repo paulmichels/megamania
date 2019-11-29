@@ -133,6 +133,11 @@ class Reservation_Model extends MY_Model {
         return Jeu_Details_Entity::mergeInOneArray($this->db->query($query)->custom_result_object('Jeu_Details_Entity'));
     }
 
+    public function countReservation($utilisateur){
+        $query = "SELECT * FROM public.\"countReservation\"('".$utilisateur."')";
+        return $this->db->query($query)->result_array();
+    }
+
     
 }
 
