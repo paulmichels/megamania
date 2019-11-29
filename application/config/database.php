@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-/*$db['default'] = array(
+$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
@@ -94,8 +94,8 @@ $query_builder = TRUE;
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-*/
-$db['default'] = array(
+
+/*$db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'postgresql-megamania.alwaysdata.net',
 	'username' => 'megamania',
@@ -115,4 +115,4 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);
+);*/

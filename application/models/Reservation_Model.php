@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 require_once(ENTITIES_DIR  . "Reservation_Entity.php");
+require_once(ENTITIES_DIR  . "Jeu_Details_Entity.php");
 
 class Reservation_Model extends MY_Model {
     
@@ -111,6 +112,28 @@ class Reservation_Model extends MY_Model {
         }
         return $data;
     }
+
+    /**
+    * Retourne la liste des enregistrements
+    *
+    * @return Reservation_Entity
+    */
+    
+    public function getReservationListByLogin($login) {
+        $data = $this->read(array('login_utilisateur' => $login));
+        if(empty($data)){
+            $error = $this->db->error();
+            return false;
+        }
+        return $data;
+    }
+
+    public function getReservationAsJeu($utilisateur){
+        $query = "SELECT * FROM public.\"reservationUtilisateur\"('".$utilisateur."'::VARCHAR)";
+        return Jeu_Details_Entity::mergeInOneArray($this->db->query($query)->custom_result_object('Jeu_Details_Entity'));
+    }
+
+    
 }
 
 ?>

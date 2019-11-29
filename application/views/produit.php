@@ -137,9 +137,8 @@
 					url: "<?php echo base_url()."index.php/produit/book/";?>",
 					data: {
 						reservation: {
-							date_reservation: 'current_timestamp',
 							etat: "'En cours'",
-							login_utilisateur: "'test@test.com'", //because we only have 1 user now
+							login_utilisateur: "'<?php echo $utilisateur->login ?>'",
 							id_produit: <?php echo $produit->id_jeu ?>
 						}
 					},
