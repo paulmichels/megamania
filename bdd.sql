@@ -511,3 +511,17 @@ AFTER INSERT
 ON Reservation
 FOR EACH ROW
 EXECUTE PROCEDURE remove_stock();
+
+
+CREATE OR REPLACE FUNCTION public."searchGame"(p_query text,p_id_plateforme integer)
+   RETURNS jeu_details
+AS $$
+BEGIN
+   RETURN QUERY SELECT * 
+    FROM jeu_details
+    WHERE nom LIKE p_query ESCAPE '!'
+    AND id_plateforme = p_id_plateforme;
+END; $$ 
+ 
+LANGUAGE 'plpgsql';
+
