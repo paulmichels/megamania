@@ -583,3 +583,49 @@ END; $$
  
 LANGUAGE 'plpgsql';
 
+CREATE TRIGGER create_jeu INSTEAD OF INSERT ON jeu_details
+FOR EACH ROW
+EXECUTE PROCEDURE newGame();
+
+CREATE OR REPLACE FUNCTION public."newGame"()
+RETURNS TRIGGER AS
+$$
+    DECLARE
+    BEGIN
+        INSERT INTO produit(id, nom, description)
+            VALUES (
+                DEFAULT,
+                new.nom,
+                new.description
+            );
+        INSERT INTO editeur(id, nom)
+            VALUES (
+                DEFAULT,
+                new.nom
+            );
+        INSERT INTO jeu(id, date_sortie, id_editeur)
+            VALUES(
+                DEFAULT,
+                new.date_sortie,
+                new.idid_editeur
+            );
+        INSERT INTO pegi_jeu(id_pegi, id_jeu)
+            VALUES(
+                new.id_pegi,
+                new.id_jeu
+            );
+        INSERT INTO genre_jeu(id_genre, id_jeu)
+            VALUES(
+                new.id_genre,
+                new.id_jeu
+            );
+        INSERT INTO stock(id_jeu, id_plateforme, prix, quantite)
+            VALUES(
+                new.id_jeu,
+                new.id_plateforme,
+                new.prix,
+                new.quantite
+            ); 
+    END;
+$$
+LANGUAGE 'plpgsql';
