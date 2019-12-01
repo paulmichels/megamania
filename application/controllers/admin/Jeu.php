@@ -60,9 +60,9 @@ Class Jeu extends CI_Controller {
 				'".$value->date_sortie."',
 				".$value->id_genre.",
 				".$value->id_plateforme.",
-				".$value->id_pegi.",
-				".$value->quantite.",
 				".$value->prix.",
+				".$value->quantite.",
+				".$value->id_pegi.",
 				".$value->id_editeur.",
 				'".$editeur_list[$value->id_editeur - 1]->nom."'
 			)";
