@@ -190,6 +190,10 @@
                     success: function(data){
                         try {
                             console.log(data);
+                            data = $.parseJSON(data);
+                            if(data.response == true){
+                                location.reload();
+                            }
                         }
                         catch(e){
                             console.log(e);

@@ -40,7 +40,10 @@ Class Genre extends CI_Controller {
 		$query = "INSERT INTO genre VALUES(".$genre->id.", '".$genre->nom."')";
 
 		if($this->Genre_Model->manualQuery($query)){
-			$this->load->view('genre', $data);
+	        echo json_encode(array(
+	            'response' => true,
+	            'message' => 'OK'
+	        ));
 		} else {
 	        echo json_encode(array(
 	            'response' => false,

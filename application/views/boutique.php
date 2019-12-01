@@ -35,7 +35,7 @@
 															<div class="product-img">
 																<a href="<?php echo base_url() ?>index.php/produit/?id=<?php echo $value->id_jeu ?>">
 																<img src="<?php echo base_url().'assets/img/jeux/'.strtolower(str_replace(" ", "_", $value->nom)).'/1.jpg'?>" alt=""
-																width="262" height="327"></a>
+																width="262" height="327" onerror="this.src='<?php echo base_url().'assets/img/logo.png'?>'"></a>
 																<div class="product-label">
 																</div>
 															</div>

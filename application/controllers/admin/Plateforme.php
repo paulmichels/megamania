@@ -40,7 +40,10 @@ Class Plateforme extends CI_Controller {
 		$query = "INSERT INTO plateforme VALUES(".$plateforme->id.", '".$plateforme->nom."')";
 				
 		if($this->Plateforme_Model->manualQuery($query)){
-			$this->load->view('plateforme', $data);
+	        echo json_encode(array(
+	            'response' => true,
+	            'message' => 'OK'
+	        ));
 		} else {
 	        echo json_encode(array(
 	            'response' => false,
