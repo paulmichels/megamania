@@ -29,6 +29,7 @@ Class Pegi extends CI_Controller {
 	}
 
 	public function create(){
+
 		$form = $this->input->post();
 		
 		$pegi = new Pegi_Entity();
@@ -38,7 +39,10 @@ Class Pegi extends CI_Controller {
 		$query = "INSERT INTO pegi VALUES(".$pegi->id.", '".$pegi->nom."')";
 				
 		if($this->Pegi_Model->manualQuery($query)){
-			$this->load->view('pegi', $data);
+	        echo json_encode(array(
+	            'response' => true,
+	            'message' => 'OK'
+	        ));
 		} else {
 	        echo json_encode(array(
 	            'response' => false,

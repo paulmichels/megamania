@@ -588,40 +588,51 @@ RETURNS TRIGGER AS
 $$
     DECLARE
     BEGIN
-        INSERT INTO produit(id, nom, description)
-            VALUES (
-                DEFAULT,
-                new.nom,
+        IF (SELECT NOT EXISTS(SELECT nom FROM produit WHERE nom=new.nom)) THEN
+            INSERT INTO produit(id, nom, description)
+                VALUES(
+                DEFAULT, 
+                new.nom, 
                 new.description
-            );
-        INSERT INTO editeur(id, nom)
-            VALUES (
-                DEFAULT,
-                new.nom_editeur
-            );
-        INSERT INTO jeu(id, date_sortie, id_editeur)
-            VALUES(
-                DEFAULT,
-                new.date_sortie,
+                );
+
+
+
+            INSERT INTO jeu(id, date_sortie, id_editeur)
+                VALUES(
+                DEFAULT, 
+                new.date_sortie, 
                 new.id_editeur
-            );
-        INSERT INTO pegi_jeu(id_pegi, id_jeu)
-            VALUES(
-                new.id_pegi,
-                public."getLastGame"()
-            );
-        INSERT INTO genre_jeu(id_genre, id_jeu)
-            VALUES(
-                new.id_genre,
-                public."getLastGame"()
-            );
-        INSERT INTO stock(id_jeu, id_plateforme, prix, quantite)
-            VALUES(
-                public."getLastGame"(),
-                new.id_plateforme,
-                new.prix,
-                new.quantite
-            ); 
+                );
+        END IF;
+
+
+        IF (SELECT NOT EXISTS(SELECT 1 FROM pegi_jeu WHERE id_pegi=new.id_pegi AND id_jeu=public."getLastGame"())) THEN
+            INSERT INTO pegi_jeu(id_pegi, id_jeu)
+                VALUES(
+                    new.id_pegi,
+                    public."getLastGame"()
+                );
+        END IF;
+
+
+        IF (SELECT NOT EXISTS(SELECT 1 FROM genre_jeu WHERE id_genre=new.id_genre AND id_jeu=public."getLastGame"())) THEN
+            INSERT INTO genre_jeu(id_genre, id_jeu)
+                VALUES(
+                    new.id_genre,
+                    public."getLastGame"()
+                );
+        END IF;
+
+        IF (SELECT NOT EXISTS(SELECT 1 FROM stock WHERE id_plateforme=new.id_plateforme AND id_jeu=public."getLastGame"())) THEN
+            INSERT INTO stock(id_jeu, id_plateforme, prix, quantite)
+                VALUES(
+                    public."getLastGame"(),
+                    new.id_plateforme,
+                    new.prix,
+                    new.quantite
+                );
+        END IF;
         RETURN new;
     END;
 $$
@@ -632,39 +643,5 @@ INSTEAD OF INSERT
 ON jeu_details
 FOR EACH ROW
 EXECUTE PROCEDURE newGame();
-
-CREATE OR REPLACE FUNCTION checkEditeur()
-RETURNS TRIGGER AS
-$$
-    DECLARE editeur_exists BOOLEAN := FALSE;
-    BEGIN
-        SELECT new.nom = nom
-        FROM editeur
-        INTO editeur_exists;
-        RAISE INFO 'déclencheur sur insertion editeur, editeur existe : %', editeur_exists;
-        IF(editeur_exists) THEN RETURN NULL;
-        END IF;
-    END;
-$$
-LANGUAGE 'plpgsql';
-
-CREATE TRIGGER updateEditeur
-BEFORE INSERT
-ON editeur
-FOR EACH ROW
-EXECUTE PROCEDURE checkEditeur();
-
-CREATE OR REPLACE FUNCTION public."getLastGame"()
-RETURNS INTEGER AS
-$$
-    DECLARE lastGame INTEGER;
-    BEGIN
-        SELECT MAX(id)
-        FROM Jeu
-        INTO lastGame;
-        RETURN lastGame;
-    END;
-$$
-LANGUAGE 'plpgsql';
 
 

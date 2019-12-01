@@ -3,7 +3,19 @@
 	<div id="top-header">
 		<div class="container">
 			<ul class="header-links pull-left">
-				<li><a href="#"><i class="fa fa-envelope-o"></i>megamania.cnam@hotmail.fr</a></li>
+				<li><a href="https://github.com/paulmichels/megamania"><i class="fa fa-github"></i>github.com/paulmichels/megamania</a></li>
+			</ul>
+			<ul class="header-links pull-left">
+				<li style="color: #FFFFFF; margin-left: 30px;">Made by :&nbsp;</li>
+			</ul>
+			<ul class="header-links pull-left">
+				<li style="margin-left: 10;"><a href="https://github.com/paulmichels"></i>Paul Michels</a></li>
+			</ul>
+			<ul class="header-links pull-left">
+				<li style="color: #FFFFFF; margin-left: 10;">&nbsp;and&nbsp;</li>
+			</ul>
+			<ul class="header-links pull-left">
+				<li style="margin-left: 10;"><a href="https://github.com/oceanecarpentier">	</i>Océane Carpentier</a></li>
 			</ul>
 			<ul class="header-links pull-right">
 				<li><a href="<?php echo base_url() ?>index.php/admin/jeu"><i class="fa fa-user-o"></i> <?php echo $utilisateur->login ?></a></li>

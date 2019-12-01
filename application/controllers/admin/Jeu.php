@@ -60,17 +60,17 @@ Class Jeu extends CI_Controller {
 				'".$value->date_sortie."',
 				".$value->id_genre.",
 				".$value->id_plateforme.",
-				".$value->prix.",
-				".$value->quantite.",
 				".$value->id_pegi.",
+				".$value->quantite.",
+				".$value->prix.",
 				".$value->id_editeur.",
-				'".$editeur_list[$value->id_editeur]->nom."'
+				'".$editeur_list[$value->id_editeur - 1]->nom."'
 			)";
 			$this->Jeu_Details_Model->manualQuery($query);
 		}
 
         echo json_encode(array(
-            'response' => $jeu_details,
+            'response' => true,
             'message' => 'OK'
         ));
 	}

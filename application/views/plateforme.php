@@ -133,6 +133,11 @@
                     success: function(data){
                         try {
                             console.log(data);
+                            data = $.parseJSON(data);
+                            if(data.response == true){
+                                console.log('here');
+                                location.reload();
+                            }
                         }
                         catch(e){
                             console.log(e);

@@ -38,7 +38,10 @@ Class Editeur extends CI_Controller {
 		$query = "INSERT INTO editeur VALUES(".$editeur->id.", '".$editeur->nom."')";
 				
 		if($this->Editeur_Model->manualQuery($query)){
-			$this->load->view('editeur', $data);
+	        echo json_encode(array(
+	            'response' => true,
+	            'message' => 'OK'
+	        ));
 		} else {
 	        echo json_encode(array(
 	            'response' => false,
