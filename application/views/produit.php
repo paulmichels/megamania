@@ -6,6 +6,16 @@
 		<?php include('header.php'); ?>
 		<!-- /HEADER -->
 
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<p>Impossible de réserver : Le produit est en rupture de stock!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -147,8 +157,6 @@
 						try {
 							data = $.parseJSON(data);
 							$('#cart-quantity').html(parseInt($('#cart-quantity').html()) + 1);
-							console.log(parseFloat($('#cart-summary-price').html()));
-							console.log(parseFloat(data.response.prix));
 							$('#cart-summary-price').html(parseFloat($('#cart-summary-price').html()) + parseFloat(data.response.prix));
 							if($('#reservation-' + data.response.id_jeu).length){
 								$('#product-quantity-' + data.response.id_jeu).html(parseInt($('#product-quantity-' + data.response.id_jeu).html()) + 1);
@@ -163,6 +171,7 @@
 					},
 					error: function(data) {
 						console.log(data);
+						$('#modal').modal('toggle');
 					}
 				})
 			});

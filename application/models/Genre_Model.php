@@ -99,6 +99,10 @@ class Genre_Model extends MY_Model {
         }
         return $data;
     }
+
+    public function manualQuery($query){
+        return $this->db->query($query);
+    }
 }
 
 ?>
