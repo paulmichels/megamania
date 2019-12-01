@@ -32,7 +32,7 @@ class Jeu_Details_Model extends MY_Model {
     
     public function insertJeuDetails($obj) {
         if(is_a($obj, $this->getEntity())){
-            return $this->replace($obj);
+            return $this->create($obj);
         }
         return false;
     }
@@ -103,6 +103,10 @@ class Jeu_Details_Model extends MY_Model {
     public function searchJeuDetailsList($query=null, $id_plateforme=null){
         $query = $this->db->query("SELECT * FROM public.\"searchGame\"('%".$query."%'::TEXT, ".$id_plateforme.")");
         return Jeu_Details_Entity::mergeInOneArray($query->custom_result_object($this->entity));
+    }
+
+    public function manualQuery($query){
+        return $this->db->query($query);
     }
 }
 

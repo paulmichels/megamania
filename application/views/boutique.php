@@ -146,8 +146,7 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Prix</h3>
-							<button class="search-btn" id="filter-button">Rechercher</button>
+							<button class="btn btn-danger" style="background: #D10024"  id="filter-button">Rechercher</button>
 						</div>
 						<!-- /aside Widget -->
 
