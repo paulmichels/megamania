@@ -38,8 +38,8 @@
                                 <?php foreach ($reservation_list[0]->getObjectVars() as $key => $value) {
                                     echo '<th scope="col">'.$value.'</th>';
                                 } ?>
-                                <th scope=col></th>
-                                <th scope=col></th>
+                                <!-- <th scope=col></th>
+                                <th scope=col></th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -71,7 +71,7 @@
 
                                 <?php $key = $element->getObjectVars()[0];?>
                                 <!-- <td><button id="<?php echo 'btn-edit-'.$element->$key ?>" class="btn btn-primary" onclick="confirmEntry(this.value)" value="<?php echo $element->$key ?>"> Confirmer</button></td> -->
-                                <td><button id="<?php echo 'btn-delete-'.$element->$key ?>" class="btn btn-danger" onclick="deleteEntry(this.value)" value="<?php echo $element->$key ?>"> Supprimer</button></td>
+                                <!-- <td><button id="<?php echo 'btn-delete-'.$element->$key ?>" class="btn btn-danger" onclick="deleteEntry(this.value)" value="<?php echo $element->$key ?>"> Supprimer</button></td> -->
                                 </td></tr>
                             <?php } ?>
                         </tbody>
